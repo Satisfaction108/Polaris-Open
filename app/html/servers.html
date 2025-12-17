@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <link href="/css/polaris.css" type="text/css" rel="stylesheet">
     <link rel="icon" href="/assets/polaris.svg">
-    <title>Polaris</title>
-    <meta property="og:title" content="Polaris">
-    <meta property="og:description" content="An open-source XP bot">
+    <title>dakarr.cc</title>
+    <meta property="og:title" content="dakarr.cc">
+    <meta property="og:description" content="A customizable XP bot for Discord">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#00ff80">
     <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@ Fetch(`./api/guilds`).then(data => {
 
 let downloading = false
 function downloadServerData(server) {
-    if (!server || !confirm(`Would you like to download all Polaris data from ${server.name}? (it can be imported into other bots)`)) return
+    if (!server || !confirm(`Would you like to download all dakarr.cc data from ${server.name}? (it can be imported into other bots)`)) return
 
     fetch(`./api/xp/${server.id}?format=everything`).then(res => {
         if (!res.ok) {

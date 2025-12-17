@@ -41,7 +41,7 @@ function addUhOh() {
 }
 
 function loginButton() {
-    localStorage.polaris_url = window.location.pathname
+    localStorage.dakarr_url = window.location.pathname
     window.location.href = "/discord"
 }
 

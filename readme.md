@@ -1,6 +1,5 @@
-# Polaris!
-...is a super customizable XP bot for Discord with all sorts of neat features!
-Unfortunately, it's become increasingly annoying to host, so I'm passing the torch by open-sourcing all the messy code and allowing anyone to host this thing!
+# dakarr.cc
+A super customizable XP bot for Discord with all sorts of neat features!
 
 If you're an experienced software dev i am so sorry for what comes next
 
@@ -32,7 +31,7 @@ Fortunately Discord makes this super easy, thanks Discord
 	- There's a couple settings for the web server, you probably don't really need to touch them
 	- `siteURL` does **NOT** control the actual URL for your server - it just changes where the bot links users to
 	- If you provide a `changelogURL` or `supportURL` they'll appear in /botstatus
-2. Test out the bot by opening up your terminal in the root directory and typing `node polaris.js`
+2. Test out the bot by opening up your terminal in the root directory and typing `npm start` (or `node polaris.js`)
 	- Most commands won't work due to the lack of a database, but if the bot appears online it means you're good
 	- Only dev commands will be present by default, the rest will be deployed in step 4. Dev commands are only visible to server admins and only work if you're specified as a dev in the config file
 
@@ -54,7 +53,7 @@ There's many different ways to set up MongoDB, but I recommend one of these meth
 **Option 3: Host it on your computer**
 - Probably not the wisest idea since it needs to be running 24/7. I would only do this if you're hosting the entire bot on it for some reason, or just want to test things out. But if that sounds like a plan to you, go follow this [absurdly long tutorial](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/).
 
-All set? Awesome. Polaris uses two collections: `servers` for server data, and `auth` for website logins. I'm pretty sure the bot automatically creates these for you.
+All set? Awesome. The bot uses two collections: `servers` for server data, and `auth` for website logins. The bot automatically creates these for you.
 
 1. Find your **connection string**. The way you obtain it depends on how you set up MongoDB, but there will definitely be one. It should start with `mongodb://` or `mongodb+srv://` or something similar. **If you're self-hosting and can't find the string, you can skip this and just use the username + password you set up.**
 
@@ -77,7 +76,7 @@ If it's not connecting, try checking:
 	- If you're happy with your settings and only plan on using the bot for one server, you can disable the server in `config.json` and only enable it when you need to tweak things
 		- Note that most simple settings (booleans and numbers) can be tweaked from /config
 		- Reward roles and multipliers can be configured via /rewardrole and /multiplier
-	- If you're running Polaris from a hosted server, make sure the port you chose is open. Then you should be able to visit `http://<server ip>:<port>`, e.g. http://7.7.7.7:6880. Make sure to also add it as an OAuth2 redirect in the Discord dev portal, ending in /auth. (e.g. http://7.7.7.7:6880/auth)
+	- If you're running the bot from a hosted server, make sure the port you chose is open. Then you should be able to visit `http://<server ip>:<port>`, e.g. http://7.7.7.7:6880. Make sure to also add it as an OAuth2 redirect in the Discord dev portal, ending in /auth. (e.g. http://7.7.7.7:6880/auth)
 	- If you don't want the URL to be a shady looking IP, you're going to need to buy a domain then reverse proxy your localhost into an actual public URL. I wish you luck. (add that one as an OAuth2 redirect as well)
 		- Just google "localhost to public URL" and you should get some info on how to do this
 		- Alternatively, you can try [Cloudflare Tunnel](https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/) or [ngrok](https://ngrok.com/) - though these are usually more temporary solutions
@@ -89,12 +88,12 @@ If it's not connecting, try checking:
 ---
 
 ## Some other tips
-### Transferring data from the original Polaris
-**NOTE**: If you are listed as a bot developer, you can access the dashboard for any server your bot is in. The JSON import feature is heavily limited for non-devs (security reasons), so feel free to use this power in order to import .json files for others. 
-1. On the [original Polaris dashboard](https://gdcolon.com/polaris), go to the Data tab of your server settings and press **Download all data**. This will download a .json file
-2. On your own hosted dashboard, go to the Data tab of your server settings, scroll down, and scroll down to the import settings section
+### Importing data from JSON
+**NOTE**: If you are listed as a bot developer, you can access the dashboard for any server your bot is in. The JSON import feature is heavily limited for non-devs (security reasons), so feel free to use this power in order to import .json files for others.
+1. Go to the Data tab of your server settings and press **Download all data**. This will download a .json file
+2. On your dashboard, go to the Data tab of your server settings, scroll down to the import settings section
 3. Upload the .json file and press import
-4. All data from Polaris should be transferred!
+4. All data should be transferred!
 
 ### Using dev commands
 `/db` allows you to view a server's raw data, or modify it
@@ -120,6 +119,4 @@ Do whatever you want as long as you credit me and use your own fork for it.
 * Do not add any paid or monetized features
 * Issues and PRs on this repo are only for things that improve the open-source code, it's not a place for feature requests and new stuff as I'm no longer maintaining this bot
 
-If you ever have any questions feel free to reach out to me, the Polaris support server is a good place for it
-
-And if the code is bad, forgive me
+Based on the original Polaris bot by GDColon.

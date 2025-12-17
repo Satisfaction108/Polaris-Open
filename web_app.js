@@ -843,7 +843,7 @@ function storeAuthToken(res, tokens) {
     let expiration = Date.now() + (1000 * tokens.expires_in) // when the token expires (one week)
     authDB.delete({ expires: { $lt: Date.now() } }).then(() => {}) // clear expired tokens
     authDB.create({ _id: randomID, access_token: tokens.access_token, refresh_token: tokens.refresh_token, expires: expiration }).then((data) => {
-        res.cookie("polaris", randomID, { "expires": new Date(expiration) });
+        res.cookie("dakarr", randomID, { "expires": new Date(expiration) });
         sendRedirect(res, "/?authorized") // sweet, back to the homepage
     }).catch((e) => { console.error(e); sendRedirect(res, "/") })
 }
@@ -870,7 +870,7 @@ async function getDiscordToken(token) {
 Now we can make requests to Discord to get the client's stuff! */
 let discordCache = {} // cache data to prevent rate limits
 async function getDiscordInfo(req, userOnly) {
-    let token = await getDiscordToken(req.cookies.polaris) // get discord's tokens using the token in their cookies
+    let token = await getDiscordToken(req.cookies.dakarr) // get discord's tokens using the token in their cookies
     if (!token) return userOnly ? null : [null, null]
 
     let foundData = discordCache[token] // check for cached data
@@ -892,7 +892,7 @@ async function getDiscordInfo(req, userOnly) {
 /* STEP 6
 If the client wants to log out, we should probably respect that and delete their stuff */
 app.get("/logout", async function(req, res) {
-    let token = await getDiscordToken(req.cookies.polaris)
+    let token = await getDiscordToken(req.cookies.dakarr)
     if (!token) return sendRedirect(res, "/")
 
     fetch(discordAPI + "oauth2/token/revoke", {
@@ -904,9 +904,9 @@ app.get("/logout", async function(req, res) {
             token: token.access_token
         })
     }).then(() => { // discord has invalidated the token!
-        res.clearCookie("polaris"); // remove token from cookies
-        authDB.delete({ _id: req.cookies.polaris }).catch(() => {}); // also delete from database
-        delete tokenCache[req.cookies.polaris]; // remove from cache
+        res.clearCookie("dakarr"); // remove token from cookies
+        authDB.delete({ _id: req.cookies.dakarr }).catch(() => {}); // also delete from database
+        delete tokenCache[req.cookies.dakarr]; // remove from cache
         sendRedirect(res, "/"); // return home
     }).catch(e => sendRedirect(res, "/"))
 })
