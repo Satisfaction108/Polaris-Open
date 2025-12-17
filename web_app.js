@@ -899,12 +899,14 @@ app.get("/logout", async function(req, res) {
         method: "POST",
         headers: { "Content-type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-            client_id: auth.id,
-            client_secret: auth.secret,
-            token
+            client_id: process.env.DISCORD_ID,
+            client_secret: process.env.DISCORD_SECRET,
+            token: token.access_token
         })
     }).then(() => { // discord has invalidated the token!
         res.clearCookie("polaris"); // remove token from cookies
+        authDB.delete({ _id: req.cookies.polaris }).catch(() => {}); // also delete from database
+        delete tokenCache[req.cookies.polaris]; // remove from cache
         sendRedirect(res, "/"); // return home
     }).catch(e => sendRedirect(res, "/"))
 })

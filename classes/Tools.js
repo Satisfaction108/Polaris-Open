@@ -22,7 +22,7 @@ class Tools {
         }
 
         // is in developer list
-        this.isDev = function(user=int.user) {
+        this.isDev = function(user=int?.user) {
             return config.developer_ids.includes(user?.id)
         }
 
