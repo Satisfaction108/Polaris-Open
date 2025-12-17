@@ -1,13 +1,13 @@
 {
-  "test_server_ids": ["12345678"],
+  "test_server_ids": ["1252446737688301659"],
 
-  "developer_ids": ["12345678"],
+  "developer_ids": ["1225883366620926036"],
 
   "lockBotToDevOnly": false,
   
   "enableWebServer": true,
-  "serverPort": 6880,
-  "siteURL": "http://localhost:6880",
+  "serverPort": 10000,
+  "siteURL": "https://polaris-bot.onrender.com",
   
   "changelogURL": "",
   "supportURL": ""
