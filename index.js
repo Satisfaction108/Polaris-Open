@@ -21,13 +21,13 @@ const startTime = Date.now()
 const client = new Discord.Client({
     allowedMentions: { parse: ["users"] },
     makeCache: Discord.Options.cacheWithLimits({ MessageManager: 0 }),
-    intents: ['Guilds', 'GuildMessages', 'DirectMessages', 'GuildVoiceStates'].map(i => Discord.GatewayIntentBits[i]),
+    intents: ['Guilds', 'GuildMessages', 'MessageContent', 'DirectMessages', 'GuildVoiceStates', 'GuildMembers'].map(i => Discord.GatewayIntentBits[i]),
     partials: ['Channel'].map(p => Discord.Partials[p]),
     failIfNotExists: false
 })
 
 if (!client.shard) {
-    console.error("No sharding info found!\nMake sure you start the bot from polaris.js, not index.js")
+    console.error("No sharding info found!\nMake sure you start the bot using 'npm start', not 'node index.js'")
     return process.exit()
 }
 

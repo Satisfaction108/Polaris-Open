@@ -525,7 +525,7 @@ app.post("/api/importfrombot", async function(req, res) {
     if (importCooldowns[importCode] && importCooldowns[importCode] >= Date.now()) return res.apiError(`Please wait ${tools.time(importCooldowns[importCode] - Date.now(), 1)} seconds before the next import!`, "importCooldown")
 
     let newData;
-    if (bot == "polaris") newData = await require("./commands/misc/polaris_transfer.js").run(client, guildID, importSettings, guilds)
+    if (bot == "transfer") newData = await require("./commands/misc/polaris_transfer.js").run(client, guildID, importSettings, guilds)
     else if (bot == "json") newData = await require("./commands/misc/json_import.js").run(client, guildID, importSettings, req.body.jsonData)
 
     if (newData && newData.error) return res.apiError(newData.error, newData.code)

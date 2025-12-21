@@ -719,7 +719,7 @@
                 <h2 style="margin: 0px 0px">Import settings and XP from</h2>
                 <select id="importfrom" style="margin-left: 8px; width: 250px; font-weight: bold;" onchange="$('.importdiv').hide(); $(`.importdiv[importtype='${$(this).val()}']`).show()">
                     <option value="json">.json file</option>
-                    <option value="polaris">Another server</option>
+                    <option value="transfer">Another server</option>
                 </select>
             </div>
 
@@ -749,7 +749,7 @@
                 </div>
             </div>
 
-            <div class="importdiv" importtype="polaris" style="display: none">
+            <div class="importdiv" importtype="transfer" style="display: none">
                 <p class="details">Copies XP and settings from another server using this bot. <b>Requires server owner</b></p>
                 <p class="details"><b>Note:</b> Since you are transferring from another server, reward roles and multipliers cannot be copied</p>
                 <div class="centerflex spacedflex">
@@ -1128,7 +1128,7 @@
 
         // extra info on home
         updateHomeInfo = function(data) {
-            $('p[cat="extra"][category="xp"]').text(data.enabled ? `Enabled! ${commafy(data["gain.min"])}${data["gain.min"] == data["gain.max"] ? "" : `-${commafy(data["gain.max"])}`} XP every ${commafy(data["gain.time"])}s` : "XP disabled!").css("color", data.enabled ? "var(--polarisgreen)" : "#ff6666")
+            $('p[cat="extra"][category="xp"]').text(data.enabled ? `Enabled! ${commafy(data["gain.min"])}${data["gain.min"] == data["gain.max"] ? "" : `-${commafy(data["gain.max"])}`} XP every ${commafy(data["gain.time"])}s` : "XP disabled!").css("color", data.enabled ? "var(--brandgreen)" : "#ff6666")
             $('p[cat="extra"][category="rewardroles"]').text(data.rewards.length ? addS(data.rewards.length, "reward role") : "No reward roles")
             $('p[cat="extra"][category="levelup"]').text(data["levelUp.enabled"] && data["levelUp.message"] ? `Enabled!${data["levelUp.embed"] ? " (embedded)" : ""}` : "Disabled")
             $('p[cat="extra"][category="multipliers"]').text(`${addS(data["multipliers.roles"].length, "role")}, ${addS(data["multipliers.channels"].length, "channel")}`)
